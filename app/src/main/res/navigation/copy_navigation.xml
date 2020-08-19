@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/cameraFragment"
         android:name="jp.millennium.ncl.colorcopycamera.view.CameraFragment"
-        android:label="CameraFragment" >
+        android:label="Color Copy" >
         <action
             android:id="@+id/actionHistoryFragment"
             app:destination="@+id/historyFragment" />
@@ -14,5 +14,5 @@
     <fragment
         android:id="@+id/historyFragment"
         android:name="jp.millennium.ncl.colorcopycamera.view.HistoryFragment"
-        android:label="HistoryFragment" />
+        android:label="History Color" />
 </navigation>
