@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="rgbColor"
+            type="jp.millennium.ncl.colorcopycamera.model.RgbColor"/>
+
+        <variable
+            name="listener"
+            type="jp.millennium.ncl.colorcopycamera.view.RgbColorClickListener"/>
+    </data>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:onClick="@{listener::onRgbColorClicked}"
+        android:layout_height="50dp">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:layout_margin="4dp"
+            android:rgbColor="@{rgbColor.code}" />
+
+        <TextView
+            android:id="@+id/rgbColorCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_gravity="center_vertical"
+            android:text="@{rgbColor.code}" />
+
+    </LinearLayout>
+
+</layout>
