@@ -1,13 +1,17 @@
 package jp.millennium.ncl.colorcopycamera.view
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import jp.millennium.ncl.colorcopycamera.R
 import jp.millennium.ncl.colorcopycamera.databinding.ItemRgbColorBinding
 import jp.millennium.ncl.colorcopycamera.model.RgbColor
+import jp.millennium.ncl.colorcopycamera.util.withColor
+import kotlinx.android.synthetic.main.item_rgb_color.view.*
 
 class RgbColorListAdapter(private val rgbColorList: ArrayList<RgbColor>) : RecyclerView.Adapter<RgbColorListAdapter.RgbColorViewHolder>() {
 
@@ -38,10 +42,10 @@ class RgbColorListAdapter(private val rgbColorList: ArrayList<RgbColor>) : Recyc
         }
 
         override fun onRgbColorClicked(v: View) {
-            /*val uuid = v.dogId.text.toString().toInt()
-            val action = ListFragmentDirections.actionDetailFragment()
-            action.dogUuid = uuid
-            Navigation.findNavController(v).navigate(action)*/
+            val rgbColorCode = v.rgbColorCode.text.toString()
+            Snackbar.make(v, "%s copied!!".format(rgbColorCode), Snackbar.LENGTH_LONG)
+                .withColor(Color.parseColor(rgbColorCode))
+                .show()
         }
     }
 

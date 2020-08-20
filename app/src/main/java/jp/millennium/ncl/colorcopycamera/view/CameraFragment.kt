@@ -1,20 +1,30 @@
 package jp.millennium.ncl.colorcopycamera.view
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation.findNavController
+import com.google.android.material.snackbar.Snackbar
 
 import jp.millennium.ncl.colorcopycamera.R
+import jp.millennium.ncl.colorcopycamera.util.withColor
 import kotlinx.android.synthetic.main.fragment_camera.view.*
 
 class CameraFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_camera, container, false)
 
-        view.button.setOnClickListener {
+        view.captureButton.setOnClickListener {
+            val rgbColorCode = "#aa6544"
+            Snackbar.make(it, "%s copied!!".format(rgbColorCode), Snackbar.LENGTH_LONG)
+                .withColor(Color.parseColor(rgbColorCode))
+                .show()
+        }
+
+        view.historyButton.setOnClickListener {
             findNavController(it).navigate(CameraFragmentDirections.actionHistoryFragment())
         }
 
