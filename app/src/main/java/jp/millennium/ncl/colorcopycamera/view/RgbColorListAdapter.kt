@@ -10,6 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import jp.millennium.ncl.colorcopycamera.R
 import jp.millennium.ncl.colorcopycamera.databinding.ItemRgbColorBinding
 import jp.millennium.ncl.colorcopycamera.model.RgbColor
+import jp.millennium.ncl.colorcopycamera.util.copyText
 import jp.millennium.ncl.colorcopycamera.util.withColor
 import kotlinx.android.synthetic.main.item_rgb_color.view.*
 
@@ -43,6 +44,9 @@ class RgbColorListAdapter(private val rgbColorList: ArrayList<RgbColor>) : Recyc
 
         override fun onRgbColorClicked(v: View) {
             val rgbColorCode = v.rgbColorCode.text.toString()
+
+            v.copyText(rgbColorCode)
+
             Snackbar.make(v, "%s copied!!".format(rgbColorCode), Snackbar.LENGTH_LONG)
                 .withColor(Color.parseColor(rgbColorCode))
                 .show()

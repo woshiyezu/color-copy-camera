@@ -10,6 +10,7 @@ import androidx.navigation.Navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 
 import jp.millennium.ncl.colorcopycamera.R
+import jp.millennium.ncl.colorcopycamera.util.copyText
 import jp.millennium.ncl.colorcopycamera.util.withColor
 import kotlinx.android.synthetic.main.fragment_camera.view.*
 
@@ -18,7 +19,10 @@ class CameraFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_camera, container, false)
 
         view.captureButton.setOnClickListener {
-            val rgbColorCode = "#aa6544"
+            val rgbColorCode = "#cc6544"
+
+            it.copyText(rgbColorCode)
+
             Snackbar.make(it, "%s copied!!".format(rgbColorCode), Snackbar.LENGTH_LONG)
                 .withColor(Color.parseColor(rgbColorCode))
                 .show()
