@@ -1,19 +1,20 @@
 package jp.millennium.ncl.colorcopycamera.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import jp.millennium.ncl.colorcopycamera.model.RgbColor
+import jp.millennium.ncl.colorcopycamera.model.RgbColorDataBase
+import kotlinx.coroutines.launch
 
-class RgbColorViewModel:ViewModel() {
+class RgbColorViewModel(application: Application):BaseViewModel(application) {
 
     val rgbColorList = MutableLiveData<List<RgbColor>>()
 
     fun refresh(){
-        val newRgbColorList: MutableList<RgbColor> = mutableListOf()
-        newRgbColorList.add(RgbColor("#112233"))
-        newRgbColorList.add(RgbColor("#334455"))
-        newRgbColorList.add(RgbColor("#898989"))
-        rgbColorListRetrived(newRgbColorList)
+        launch {
+            val newRgbColorList = RgbColorDataBase(getApplication()).rgbColorDao().getAllRgbColor()
+            rgbColorListRetrived(newRgbColorList)
+        }
     }
 
     private fun rgbColorListRetrived(newRgbColorList:List<RgbColor>) {
