@@ -10,10 +10,16 @@ class RgbColorViewModel(application: Application):BaseViewModel(application) {
 
     val rgbColorList = MutableLiveData<List<RgbColor>>()
 
-    fun refresh(){
+    fun fetch() {
         launch {
             val newRgbColorList = RgbColorDataBase(getApplication()).rgbColorDao().getAllRgbColor()
             rgbColorListRetrived(newRgbColorList)
+        }
+    }
+
+    fun remove(rgbColor: RgbColor) {
+        launch {
+            RgbColorDataBase(getApplication()).rgbColorDao().delete(rgbColor)
         }
     }
 

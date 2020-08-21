@@ -30,9 +30,15 @@ class RgbColorListAdapter(private val rgbColorList: ArrayList<RgbColor>) : Recyc
 
     override fun getItemCount(): Int = rgbColorList.size
 
-
     override fun onBindViewHolder(holder: RgbColorViewHolder, position: Int) {
         holder.bindData(rgbColorList[position])
+    }
+
+    fun getItem(position: Int): RgbColor = rgbColorList[position]
+
+    fun removeAt(position: Int) {
+        rgbColorList.removeAt(position)
+        notifyItemRemoved(position)
     }
 
     class RgbColorViewHolder(var view: ItemRgbColorBinding) : RecyclerView.ViewHolder(view.root), RgbColorClickListener {

@@ -1,6 +1,7 @@
 package jp.millennium.ncl.colorcopycamera.model
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
@@ -12,4 +13,7 @@ interface RgbColorDao {
 
     @Query("SELECT * FROM rgbColor")
     suspend fun getAllRgbColor():List<RgbColor>
+
+    @Delete
+    suspend fun delete(rgbColor : RgbColor)
 }

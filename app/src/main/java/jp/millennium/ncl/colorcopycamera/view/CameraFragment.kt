@@ -24,7 +24,7 @@ class CameraFragment : Fragment(), CoroutineScope by MainScope() {
         val view = inflater.inflate(R.layout.fragment_camera, container, false)
 
         view.captureButton.setOnClickListener {
-            val rgbColorCode = "#996544"
+            val rgbColorCode = "#336544"
 
             it.copyText(rgbColorCode)
 
