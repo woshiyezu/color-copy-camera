@@ -9,42 +9,38 @@
     <SurfaceView
         android:id="@+id/mySurfaceView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="85dp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_height="match_parent" />
 
-    <ImageButton
-        android:id="@+id/historyButton"
-        android:layout_width="0dp"
+    <RelativeLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
-        android:background="@null"
-        android:src="@drawable/ic_history"
-        android:contentDescription="@null"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <Button
-        android:id="@+id/captureButton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginLeft="160dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginRight="160dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/btn_rounded"
-        android:text="@string/copy"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/captureButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_rounded"
+            android:layout_centerInParent="true"
+            android:text="@string/copy"
+            android:textColor="#ffffff" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="left" />
+        <ImageButton
+            android:id="@+id/historyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@null"
+            android:paddingStart="0dp"
+            android:paddingEnd="25dp"
+            android:src="@drawable/ic_history" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
