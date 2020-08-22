@@ -9,6 +9,8 @@ import androidx.annotation.ColorInt
 import androidx.databinding.BindingAdapter
 import com.google.android.material.snackbar.Snackbar
 
+const val PERMISSION_CAMERA = 234
+
 fun Snackbar.withColor(@ColorInt colorInt: Int): Snackbar{
     this.view.setBackgroundColor(colorInt)
     return this

@@ -1,6 +1,7 @@
 package jp.millennium.ncl.colorcopycamera.view
 
 import android.graphics.Color
+import android.hardware.Camera
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,8 +19,13 @@ import kotlinx.android.synthetic.main.fragment_camera.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import android.view.SurfaceHolder
+import kotlinx.android.synthetic.main.fragment_camera.*
 
 class CameraFragment : Fragment(), CoroutineScope by MainScope() {
+
+    private var myCamera: Camera? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_camera, container, false)
 
@@ -44,5 +50,29 @@ class CameraFragment : Fragment(), CoroutineScope by MainScope() {
         }
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val holder = mySurfaceView.holder
+        holder.addCallback(callback)
+    }
+
+    private val callback = object : SurfaceHolder.Callback {
+        override fun surfaceCreated(surfaceHolder: SurfaceHolder) {
+            myCamera = Camera.open()
+            myCamera?.setDisplayOrientation(90);
+            myCamera?.setPreviewDisplay(surfaceHolder)
+        }
+
+        override fun surfaceChanged(surfaceHolder: SurfaceHolder, i: Int, i2: Int, i3: Int) {
+            myCamera?.startPreview()
+        }
+
+        override fun surfaceDestroyed(surfaceHolder: SurfaceHolder) {
+            myCamera?.release()
+            myCamera = null
+        }
     }
 }

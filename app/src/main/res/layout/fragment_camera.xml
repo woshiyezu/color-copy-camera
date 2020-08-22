@@ -6,12 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".view.CameraFragment">
 
+    <SurfaceView
+        android:id="@+id/mySurfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="85dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
     <ImageButton
         android:id="@+id/historyButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
         android:layout_marginBottom="30dp"
         android:background="@null"
         android:src="@drawable/ic_history"
@@ -21,7 +27,7 @@
 
     <Button
         android:id="@+id/captureButton"
-        android:layout_width="0dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginLeft="160dp"
