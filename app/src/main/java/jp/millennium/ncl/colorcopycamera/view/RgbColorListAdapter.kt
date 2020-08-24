@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.androidadvance.topsnackbar.TSnackbar
 import com.google.android.material.snackbar.Snackbar
 import jp.millennium.ncl.colorcopycamera.R
 import jp.millennium.ncl.colorcopycamera.databinding.ItemRgbColorBinding
@@ -53,7 +54,7 @@ class RgbColorListAdapter(private val rgbColorList: ArrayList<RgbColor>) : Recyc
 
             v.copyText(rgbColorCode)
 
-            Snackbar.make(v, "%s copied!!".format(rgbColorCode), Snackbar.LENGTH_LONG)
+            TSnackbar.make(v, "%s copied!!".format(rgbColorCode), Snackbar.LENGTH_LONG)
                 .withColor(Color.parseColor(rgbColorCode))
                 .show()
         }

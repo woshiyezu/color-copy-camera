@@ -9,20 +9,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation.findNavController
-import com.google.android.material.snackbar.Snackbar
 
 import jp.millennium.ncl.colorcopycamera.R
 import jp.millennium.ncl.colorcopycamera.model.RgbColor
 import jp.millennium.ncl.colorcopycamera.model.RgbColorDataBase
 import jp.millennium.ncl.colorcopycamera.util.copyText
-import jp.millennium.ncl.colorcopycamera.util.withColor
 import kotlinx.android.synthetic.main.fragment_camera.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import android.view.SurfaceHolder
 import androidx.core.graphics.get
+import com.androidadvance.topsnackbar.TSnackbar
 import jp.millennium.ncl.colorcopycamera.util.ImageUtil
+import jp.millennium.ncl.colorcopycamera.util.withColor
 import kotlinx.android.synthetic.main.fragment_camera.*
 
 class CameraFragment : Fragment(), CoroutineScope by MainScope() {
@@ -38,9 +38,12 @@ class CameraFragment : Fragment(), CoroutineScope by MainScope() {
 
             it.copyText(rgbColorCode)
 
-            Snackbar.make(it, "%s copied!!".format(rgbColorCode), Snackbar.LENGTH_LONG)
-                .withColor(Color.parseColor(rgbColorCode))
-                .show()
+            TSnackbar.make(
+                it,
+                "%s copied!!".format(rgbColorCode),
+                TSnackbar.LENGTH_LONG
+            ).withColor(Color.parseColor(rgbColorCode))
+            .show()
 
             launch {
                 activity?.let {
