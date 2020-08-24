@@ -1,6 +1,7 @@
 package jp.millennium.ncl.colorcopycamera.view
 
 import android.graphics.Color
+import android.graphics.ImageFormat
 import android.hardware.Camera
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,11 +21,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import android.view.SurfaceHolder
+import androidx.core.graphics.get
+import jp.millennium.ncl.colorcopycamera.util.ImageUtil
 import kotlinx.android.synthetic.main.fragment_camera.*
 
 class CameraFragment : Fragment(), CoroutineScope by MainScope() {
 
-    private var myCamera: Camera? = null
+    private var camera: Camera? = null
+    private var parameters: Camera.Parameters? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_camera, container, false)
@@ -61,18 +65,31 @@ class CameraFragment : Fragment(), CoroutineScope by MainScope() {
 
     private val callback = object : SurfaceHolder.Callback {
         override fun surfaceCreated(surfaceHolder: SurfaceHolder) {
-            myCamera = Camera.open()
-            myCamera?.setDisplayOrientation(90);
-            myCamera?.setPreviewDisplay(surfaceHolder)
+            camera = Camera.open()
+            parameters = camera?.getParameters()
+            parameters?.setPreviewFormat(ImageFormat.NV21)
+            camera?.setDisplayOrientation(90)
+            camera?.setPreviewDisplay(surfaceHolder)
+            camera?.setPreviewCallback(object : Camera.PreviewCallback {
+                override fun onPreviewFrame(data: ByteArray, camera: Camera) {
+                    val previewWidth = camera.getParameters()?.getPreviewSize()?.width!!
+                    val previewHeight = camera.getParameters()?.getPreviewSize()?.height!!
+
+                    val bitmap = ImageUtil.getBitmapImageFromYUV(data, previewWidth, previewHeight)
+                    val intColor = bitmap[1, 1]
+                    val hexColor = "#" + Integer.toHexString(intColor).substring(2)
+                }
+            })
         }
 
         override fun surfaceChanged(surfaceHolder: SurfaceHolder, i: Int, i2: Int, i3: Int) {
-            myCamera?.startPreview()
+            camera?.startPreview()
         }
 
         override fun surfaceDestroyed(surfaceHolder: SurfaceHolder) {
-            myCamera?.release()
-            myCamera = null
+            camera?.release()
+            camera = null
         }
     }
+
 }
