@@ -22,9 +22,9 @@ fun View.copyText(text: String) {
     clipboardManager.setPrimaryClip(clipData)
 }
 
-@BindingAdapter("android:rgbColor")
-fun rgbColor(view: View, rgbColor:String?){
-    rgbColor?.let {
+@BindingAdapter("android:hexCode")
+fun hexCode(view: View, hexCode:String?){
+    hexCode?.let {
         view.setBackgroundColor(Color.parseColor(it))
     }
 }

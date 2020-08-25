@@ -38,7 +38,7 @@ class CameraFragment : Fragment(), CoroutineScope by MainScope() {
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_camera, container, false)
 
         dataBinding.root.captureButton.setOnClickListener {
-            val rgbColorCode = dataBinding.colorCode ?: ""
+            val rgbColorCode = dataBinding.hexCode ?: ""
 
             it.copyText(rgbColorCode)
 
@@ -85,7 +85,7 @@ class CameraFragment : Fragment(), CoroutineScope by MainScope() {
                     val bitmap = ImageUtil.getBitmapImageFromYUV(data, previewWidth, previewHeight)
                     val intColor = bitmap[1, 1]
                     val hexColor = "#" + Integer.toHexString(intColor).substring(2)
-                    dataBinding.colorCode = hexColor
+                    dataBinding.hexCode = hexColor
                 }
             })
         }

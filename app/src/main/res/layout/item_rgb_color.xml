@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
             android:layout_margin="4dp"
-            android:rgbColor="@{rgbColor.code}" />
+            android:hexCode="@{rgbColor.hexCode}" />
 
         <TextView
             android:id="@+id/rgbColorCode"
@@ -31,7 +31,7 @@
             android:layout_weight="0.7"
             android:layout_marginStart="4dp"
             android:layout_gravity="center_vertical"
-            android:text="@{rgbColor.code}" />
+            android:text="@{rgbColor.hexCode}" />
 
     </LinearLayout>
 

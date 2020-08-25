@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey
 @Entity
 data class RgbColor(
 
-    @ColumnInfo(name = "color_code")
-    val code: String)
+    @ColumnInfo(name = "hex_code")
+    val hexCode: String)
 {
     @PrimaryKey(autoGenerate = true)
     var id:Int = 0
