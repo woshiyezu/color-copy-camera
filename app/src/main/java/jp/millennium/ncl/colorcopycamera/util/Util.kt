@@ -24,5 +24,7 @@ fun View.copyText(text: String) {
 
 @BindingAdapter("android:rgbColor")
 fun rgbColor(view: View, rgbColor:String?){
-    view.setBackgroundColor(Color.parseColor(rgbColor))
+    rgbColor?.let {
+        view.setBackgroundColor(Color.parseColor(it))
+    }
 }
