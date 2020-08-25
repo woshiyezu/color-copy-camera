@@ -90,6 +90,8 @@ class CameraFragment : Fragment(), CoroutineScope by MainScope() {
         }
 
         override fun surfaceDestroyed(surfaceHolder: SurfaceHolder) {
+            camera?.stopPreview();
+            camera?.setPreviewCallback(null);
             camera?.release()
             camera = null
         }
