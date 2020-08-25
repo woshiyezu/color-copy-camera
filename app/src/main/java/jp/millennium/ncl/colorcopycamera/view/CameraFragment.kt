@@ -20,21 +20,25 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import android.view.SurfaceHolder
 import androidx.core.graphics.get
+import androidx.databinding.DataBindingUtil
 import com.androidadvance.topsnackbar.TSnackbar
+import jp.millennium.ncl.colorcopycamera.databinding.FragmentCameraBinding
 import jp.millennium.ncl.colorcopycamera.util.ImageUtil
 import jp.millennium.ncl.colorcopycamera.util.withColor
 import kotlinx.android.synthetic.main.fragment_camera.*
 
 class CameraFragment : Fragment(), CoroutineScope by MainScope() {
 
+    private lateinit var dataBinding: FragmentCameraBinding
+
     private var camera: Camera? = null
     private var parameters: Camera.Parameters? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_camera, container, false)
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_camera, container, false)
 
-        view.captureButton.setOnClickListener {
-            val rgbColorCode = "#336544"
+        dataBinding.root.captureButton.setOnClickListener {
+            val rgbColorCode = dataBinding.colorCode ?: ""
 
             it.copyText(rgbColorCode)
 
@@ -52,11 +56,11 @@ class CameraFragment : Fragment(), CoroutineScope by MainScope() {
             }
         }
 
-        view.historyButton.setOnClickListener {
+        dataBinding.root.historyButton.setOnClickListener {
             findNavController(it).navigate(CameraFragmentDirections.actionHistoryFragment())
         }
 
-        return view
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -81,6 +85,7 @@ class CameraFragment : Fragment(), CoroutineScope by MainScope() {
                     val bitmap = ImageUtil.getBitmapImageFromYUV(data, previewWidth, previewHeight)
                     val intColor = bitmap[1, 1]
                     val hexColor = "#" + Integer.toHexString(intColor).substring(2)
+                    dataBinding.colorCode = hexColor
                 }
             })
         }
