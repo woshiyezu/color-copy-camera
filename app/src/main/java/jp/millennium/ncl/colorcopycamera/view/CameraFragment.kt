@@ -85,7 +85,7 @@ class CameraFragment : Fragment(), CoroutineScope by MainScope() {
                     val previewHeight = camera.getParameters()?.getPreviewSize()?.height!!
 
                     val bitmap = ImageUtil.getBitmapImageFromYUV(data, previewWidth, previewHeight)
-                    val intColor = bitmap[1, 1]
+                    val intColor = bitmap[previewWidth / 2, previewHeight / 2]
                     val hexColor = "#" + Integer.toHexString(intColor).substring(2)
                     dataBinding.hexCode = hexColor
                 }
