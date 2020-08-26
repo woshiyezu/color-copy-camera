@@ -60,6 +60,8 @@ class CameraFragment : Fragment(), CoroutineScope by MainScope() {
             findNavController(it).navigate(CameraFragmentDirections.actionHistoryFragment())
         }
 
+        dataBinding.root.colorMeter.setBackgroundColor(Color.WHITE)
+
         return dataBinding.root
     }
 
