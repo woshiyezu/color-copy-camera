@@ -1,2 +1,2 @@
 # color-copy-camera
-color copy camera by Kotlin
+Camera Color Copy by Kotlin
