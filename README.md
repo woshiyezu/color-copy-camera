@@ -8,10 +8,16 @@ Camera Color Copy by Kotlin
 ## Usage
 
 1. Download or clone this repo.
-
 2. Launch Android Studio (v3.5.2)
-
 3. Import the project
+
+## Feature
+
+1. MVVM architecture
+2. Room local database
+3. Jetpack - Data Binding
+4. Jetpack - Navigation
+5. Camera SurfaceView
 
 ## Author
 Yezu Tanaka (田中葉子)
